@@ -1,0 +1,65 @@
+{
+  "workouts": [
+    { "info": { "date": "x", "main_group": "legs" },
+      "exercises" : [
+          { "info": { "name": "squats", "group": "legs" },
+            "sets": [
+                {"weight": 100, "reps": 10},
+                {"weight": 100, "reps": 10},
+                {"weight": 100, "reps": 10},
+                {"weight": 100, "reps": 10}
+            ]
+          },
+          { "info": { "name": "lunge", "group": "legs" },
+            "sets": [
+                {"weight": 30, "reps": 10},
+                {"weight": 30, "reps": 10},
+                {"weight": 30, "reps": 10},
+                {"weight": 30, "reps": 10}
+            ]
+          }
+      ]
+    },
+    { "info": { "date": "x+1", "main_group": "chest" },
+      "exercises" : [
+          { "info": { "name": "bench_press", "group": "chest" },
+            "sets": [
+                {"weight": 25, "reps": 10},
+                {"weight": 25, "reps": 10},
+                {"weight": 25, "reps": 10},
+                {"weight": 25, "reps": 10}
+            ]
+          },
+          { "info": { "name": "db_press", "group": "chest" },
+            "sets": [
+                {"weight": 30, "reps": 12},
+                {"weight": 30, "reps": 12},
+                {"weight": 30, "reps": 12},
+                {"weight": 30, "reps": 12}
+            ]
+          }
+      ]
+    }
+
+  ],
+  "ongoing_workout": {
+    "info": {
+      "date": "today",
+      "main_group": "shoulders"
+    },
+    "exercises": [
+      {
+        "info": {
+          "name": "squats",
+          "group": "X"
+        },
+        "sets": [
+          {
+            "weight": 100.0,
+            "reps": 15
+          }
+        ]
+      }
+    ]
+  }
+}
