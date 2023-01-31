@@ -10,20 +10,44 @@
 int main(int argc, char **argv){
 
     struct WorkoutHistory wh;
-    load_workout_file("../test_workout_data.json", &wh);
+    int err = load_workout_file("../test_workout_data.json", &wh);
+    if(err){
+        fprintf(stderr, "ERROR loading workout file\n");
+        return 1;
+    }
 
     // Causes error since wh already has an ongoing_workout
-    start_workout(&wh, "NOW", "back");
+    if((err = start_workout(&wh, "NOW", "back"))){
+        fprintf(stderr, "This error was expected\n");
+    }
 
-    end_workout(&wh);
-    start_workout(&wh, "NOW", "back");
+    if((err = end_workout(&wh))){
+        fprintf(stderr, "ERROR: end_workout failed\n");
+        return 1;
+    }
+
+    if((err = start_workout(&wh, "NOW", "back"))){
+        fprintf(stderr, "ERROR: start_workout failed\n");
+        return 1;
+    }
+
     struct Workout *w = &wh.ongoing_workout;
-    begin_exercise(w, "ez_bar_row", "back");
-    enter_set(w, 15, 10);
+    if((err = begin_exercise(w, "ez_bar_row", "back"))){
+        fprintf(stderr, "ERROR: begin_exercise\n");
+        return 1;
+    }
+
+    if((err = enter_set(w, 15, 10))){
+        fprintf(stderr, "ERROR: enter_set\n");
+        return 1;
+    }
 
     print_workout_history(&wh);
 
-    save_workout_to_file("output_file.json", &wh);
+    if((err = save_workout_to_file("output_file.json", &wh))){
+        fprintf(stderr, "ERROR: save_workout_to_file\n");
+        return 1;
+    }
 
     return 0;
 }

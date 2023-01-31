@@ -1,9 +1,10 @@
 #ifndef _WORKOUT_H
 #define _WORKOUT_H
-#ifdef DEBUG
-#   define PRINT_OBJ(o) fprintf(stderr, "%s() handling object '%s'\n", __func__, json_object_to_json_string(o))
+
+#ifndef NDEBUG
+#   define PRINT_OBJ(o) do{fprintf(stderr, "%s() handling object '%s'\n", __func__, json_object_to_json_string(o));}while(0)
 #else
-#   define PRINT_OBJ(o)
+#   define PRINT_OBJ(o) do{}while(0)
 #endif
 
 struct WorkoutInfo {
