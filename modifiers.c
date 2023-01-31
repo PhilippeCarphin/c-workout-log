@@ -2,7 +2,7 @@
 #include "workout.h"
 #include "modifiers.h"
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 
 void free_workout(struct Workout *w){
     free(w->info.date);
