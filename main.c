@@ -9,12 +9,24 @@
 
 int main(int argc, char **argv){
 
-    struct WorkoutHistory wh;
-    int err = load_workout_file("../test_workout_data.json", &wh);
-    if(err){
-        fprintf(stderr, "ERROR loading workout file\n");
+    char *home = getenv("HOME");
+    if(home == NULL){
         return 1;
     }
+    char basename[] = ".workout_data.json";
+    size_t len = strlen(home)+1+strlen(basename);
+    char filename[len+1];
+    snprintf(filename, len+1, "%s/%s", home, basename);
+
+    struct WorkoutHistory wh;
+    int err = load_workout_file(filename, &wh);
+    if(err){
+        fprintf(stderr, "ERROR loading workout file %s\n",filename);
+        return 1;
+    }
+    print_workout_history(&wh);
+    free_workout_history(&wh);
+    return 0;
 
     // Causes error since wh already has an ongoing_workout
     if((err = start_workout(&wh, "NOW", "back"))){

@@ -78,15 +78,15 @@ void free_exercise(struct Exercise *e){
     e->cap_sets=0;
 }
 
-int print_workout(struct Workout *w, char *indent){
+int print_workout(struct Workout *w){
     for(int e = 0; e < w->nb_exercises; e++){
         struct Exercise exc = w->exercises[e];
-        fprintf(stderr, "%sExercise: %s\n%s%s", indent, exc.info.name, indent, indent);
+        fprintf(stderr, "    %s ", exc.info.name);
         for(int s = 0; s < w->exercises[e].nb_sets; s++){
             struct ExerciseSet set = exc.sets[s];
-            fprintf(stderr, "%.1fx%d; ", set.weight, set.reps);
+            fprintf(stderr, "%.2fx%d; ", set.weight, set.reps);
         }
-        fprintf(stderr, "\n");
+        fputc('\n', stderr);
     }
     return 0;
 }
@@ -94,13 +94,13 @@ int print_workout(struct Workout *w, char *indent){
 void print_workout_history(struct WorkoutHistory *wh){
     if(wh->has_ongoing_workout){
         fprintf(stderr, "Ongoing workout\n");
-        print_workout(&wh->ongoing_workout, "    ");
+        print_workout(&wh->ongoing_workout);
     }
 
     for(int i = 0; i < wh->nb_workouts; i++){
         struct Workout w = wh->workouts[i];
         fprintf(stderr, "Workout done on %s, main_group: %s\n", w.info.date, w.info.main_group);
-        print_workout(&w, "    ");
+        print_workout(&w);
     }
 }
 
