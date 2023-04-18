@@ -16,3 +16,4 @@ add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --verbose)
 add_test(NAME run COMMAND $<TARGET_FILE:c-workout>) 
 add_dependencies(check c-workout)
 
+install(TARGETS main RUNTIME DESTINATION bin RENAME c-workout)
